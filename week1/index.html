@@ -6,27 +6,69 @@
         <style>
         body, .jumbotron {
             background: #F2F2F2;
+            font-family: Calibri, Helvetica, sans-serif;
+            font-size: 18px;
         }
         canvas {
-            background: #FFF;
-            padding: 0 auto;
-            border: 1px solid #DDD;
+            padding-top: 1em;
+            padding-bottom: 1em;
         }
         .intro {
-            background: #AAA;
-            margin-bottom: 30px;
+            background: transparent; /*#AAF;*/
+            border: none;
+            margin-top: 10px;
+            margin-bottom: 80px;
+        }
+        h1, h2, h3, .jumbotron h1, .intro h1, .hud, .serif {
+            font-family: Georgia, serif;
+            color: #333;
+        }
+        .hud, .btn-large {
+            font-size: 22px;
         }
         .intro img {
-            max-height: 200px;
+            max-height: 220px;
         }
         main article {
             padding: 20px;
+        }
+        .intro .col-md-9 {
+            height: 100%;
+        }
+        .jumbotron, main article, .intro .col-md-9 {
             background: #E2E2E2;
         }
-        
+        .jumbotron {
+            border-bottom: 8px double #333;
+        }
+        #democanvas {
+            border-top: 4px solid #999;
+            border-bottom: 4px solid #999;
+            background: #EEE;
+        }
         a.btn {
             width: 46%;
             margin: 2%;
+        }
+        .example {
+            padding: 1em;
+            padding-bottom: 0em;
+        }
+        aside {
+            box-shadow: inset 0 0 5px rgba(64,64,64,0.5);
+            background-color: #EEE;
+            padding: 2em;
+            border-radius:10px;
+            margin-bottom: 2em;
+        }
+        aside h3 {
+            padding-top: 0;
+            margin-top: 0;
+            color: #999;
+            font-weight: 600;
+        }
+        h2 {
+            margin-top: 1.5em;
         }
         </style>
     </head>
@@ -37,242 +79,230 @@
             </div>
         </header>
         <main class="container">
-            <div class="intro well row">
+            <div class="container intro row">
                 <div class="col-md-3">
                     <img src="myface.jpg" alt="my face" class="img-circle" />
                 </div>
                 <div class="col-md-9">
-                    <h3>Words!</h3>
-                    <p>Hi! I'm Ken Bellows.</p> 
+                    <h1>Hi there!</h1>
+                    <p>My name is Ken Bellows. I'm a software and web developer living somewhere near Baltimore, Maryland, USA. If you care to know more about me, I have <a href="http://www.kenbellows.com">a website</a>, though it's perhaps a bit outdated.</p>
+                    <p>
+                        This is a tiny little cluster of web pages to host my Peer-Review Assignments for Coursera's
+                        <a href="https://class.coursera.org/musicproduction-004/">Introduction to Music Production</a>
+                        course, which I am currently taking. This is my assignment for week 1.
+                    </p>
+                    <p>
+                        This week's topic is on the <strong>Frequency and Amplitude of Sound Waves</strong>.
+                    </p>
                 </div>
             </div>
             <article class="center-block">
-                <canvas id="canvas" width=1100 height=300></canvas>
-                <div class="hud">
-                    <div class="row">
-                        <div class="col-md-4 text-center">Amplitude: <span id="amplitudeVal"> dB</span></div>
-                        <div class="col-md-4 text-center">Frequency: <span id="frequencyVal"></span> Hz</div>
-                        <div class="col-md-4 text-center">Pitch: <span id="pitchVal"></span></div>
+                <section id="waves">
+                    <h2>Sound Waves</h2>
+                    <p>
+                        Sound travels in waves. We all know that. But what you may not know is that a sound wave is not your average wave. 
+                        (Well, actually, based on sheer prevalence, it's probably fairly average, discounting light waves.)
+                    </p>
+                    <p>
+                        Usually when we think of a wave, we think of ocean waves and pond ripples, with a nice, even up-and-down sort of 
+                        motion.:
+                    </p>
+                    <p>
+                        <canvas id="transverse" width=1100 height=200></canvas>
+                    </p>
+                    <p>
+                        This is referred to as a <strong>transverse wave</strong>, and it's how plenty of waves work: water ripples, light 
+                        waves, seismic waves, hand waves... But this is not how sound waves work.
+                    </p>
+                    <p>
+                        Sound waves travel in <strong>longitudinal waves</strong>. In this type of wave, the kinetic enery of the wave 
+                        vibrates along its length, running parallel to the wave's direction of travel, rather than perpendicular to it, as
+                        it would in a transverse wave.
+                    </p>
+                    <p>
+                        <canvas id="longitudinal" width=1100 height=100></canvas>
+                    </p>
+                    <p>
+                        In the case of a sound wave travelling through the air, the wave pushes and pulls the air around itself forward 
+                        and backward with it, resulting in small pockets of <strong>pressurized</strong> air and <string>rareified</string>
+                        (depressurized) spaces in between them.
+                    </p>
+                    <p>
+                        <canvas id="pockets" width="1100" height="300"></canvas>
+                    </p>
+                    <p>
+                        These waves of pressurized and rareified air pockets are what our ears understand as <strong>sound</strong>.
+                        Generally speaking, differently organized waves are heard as different sounds. Waves have many different 
+                        properties that affect how we hear them. Two of the most important and best understood of these properties are
+                        Frequency and Amplitude.
+                    </p>
+                    
+                    <h2>Frequency</h2>
+                    <p>
+                        <strong>Frequency</strong> is the word we use to talk about how "large" these pockets of air are, so to speak, or
+                        rather, how <em>frequently</em> they occur. Actually, to be more accurate, the word we use to talk about the size
+                        or length of a pocket within a wave, specifically the distance from the beginning of one pocket to the beginning
+                        of the next, is <strong>period</strong>. The period of a wave is actually the <em>inverse</em> of its frequency
+                        (<span class="serif">1/f</span>). Point being, the longer each packet is (i.e. the larger its period), the less
+                        <em>frequently</em> it occurs.
+                    </p>
+                    <p class="example">
+                        <strong>Example:</strong> below are two waves. The bottom wave has 4 times the frequency of the first. (As it happens, the
+                        two waves have frequencies of approximately 0.5Hz and 2 Hz, respectively; see below for more on the Hertz unit.)
+                    </p>
+                    <canvas id="lowfreq" width="1100" height="100"></canvas>
+                    <canvas id="highfreq" width="1100" height="100"></canvas>
+                    <p>
+                        "But wait!" you cry, "What if the packets speed up or slow down? Surely this will affect frequency as well!" 
+                        <strong>Wrong!</strong> Well, not actually wrong, because if they did speed up or slow down, that would definitely
+                        affect frequency. But remember, <strong>the speed of sound is constant</strong> within a given medium (air, water,
+                        dirt, drywall, chocolate-butterscotch-tapioca pudding). Since this never changes, a stream of air broken into
+                        pressurized pockets at a certain regular distance apart will always collide with our eardrum at a steady interval.
+                        Our ears use this measurement of how frequently they are being pounded to tell our brains what <strong>pitch</strong>
+                        the sound has. Pitch, then, is essentially our brain's interpretation of the frequency of a sound wave. (There 
+                        <em>are</em> certain other factors that will affect our perception of pitch, but frequency is far and away the 
+                        primary factor.)
+                    </p>
+                    <aside>
+                        <h3>aside:</h3>
+                        <p>If you'll excuse a brief metaphor, imagine the following scene:</p>
+                        <p>
+                            A tennis ball machine has been set up to automatically spit tennis balls at an enormous bass drum leaning up
+                            against a fence. The machine always spits them with the same amount of force, so they always travel the same
+                            speed, but it has a knob that can be set to change how quickly the machine loads and new ball and spits it.
+                        </p>
+                        <p>
+                            Now, for some reason, this drum has been rigged up to an ancient telegraph machine from the 1850s. This machine
+                            sends a "boop" each time a ball hits the drum, making for the least accurate ald least efficient form of
+                            communication known to man. In this terrible analogy, three boops per second will send a different message to
+                            the man at the other end of the telegraph than five boops per second or one boop per second.
+                        </p>
+                        <p>
+                            Now just imagine that the tennis balls are pressurized pockets of air, the machine is Mother Nature and/or a
+                            source of sound, the drum is, well, an eardrum, the telegraph line is the inner ear or neurons or something,
+                            and the guy at the other end is the brain, and hopefully you'll sort of see what I'm trying to say here.
+                        </p>
+                        <p>
+                            (What's the fence, you ask? Yeah, I'm not sure... maybe ear hair?... Get off my back, I'm not Bill Nye.)
+                        </p>
+                        <p>
+                            <strong>Oh!</strong> By the way, we call this unit of one boop (or air pocket, or vibration) per second a <strong>Hertz (Hz)</strong>.
+                            Three tennis-ball-boops per second is a 3Hz tennis-ball-drum-telegraph message.
+                        </p>
+                    </aside>
+                    
+                    <h2>Amplitude</h2>
+                    <p>This one's easier and, I'm sure you'll be glad to know, much shorter.</p>
+                    <p>
+                        We've been talking about pressurized air pockets; <strong>Amplitude</strong> is the word we use to talk about
+                        just how pressurized they are. The more powerful the vibrations generating the pressurized air packets, the more
+                        pressurized the air packets will become, the more force they will carry with them, and the harder they will hit
+                        our ear drums. Amplitude is often equated to how <strong>loud</strong> a sound is, and, while imperfect, it's
+                        not a bad approximation. There are certain other factors that affect how loud our brains think a sound is, such
+                        as ambient noise, other nearby sound sources, frequency (those high pitches are always so piercing!), and how
+                        high we've turned up our hearing aids, but amplitude is usually the primary factor.
+                    </p>
+                    <p class="example">
+                        <strong>Example:</strong> below are two waves. The bottom wave has 3 times the amplitude of the first.
+                    </p>
+                    <canvas id="lowamp" width="1100" height="100"></canvas>
+                    <canvas id="highamp" width="1100" height="100"></canvas>
+                    <aside>
+                        <h3>aside:</h3>
+                        <p>
+                            To return breifly to our terrible metaphor, imagine now that the tennis ball machine is loaded up with, say,
+                            baseballs, or rocks, or melons, or very fat chickens. (It has a variable sized barrel.) Any of these would
+                            hit the drum significantly harder than the tennis balls when launched at the same speed, and since it's a
+                            drum, the resulting "bang!" would consequently be much louder. Conversely, loading up the machine with
+                            eggs, cotton balls, or little baby chickens (little <em>hypothetical</em> baby chickens; I have not tested
+                            this, PETA) would most certainly result in a much softer sound.
+                        </p>
+                        <p>
+                            (Yeah, yeah, I know, it's a telegraph... whatever, this one uses a microphone, so it'll be a louder or softer
+                            boop or something, okay? You're not perfect either.)
+                        </p>
+                    </aside>
+                    <p>
+                        A final note: the usual unit of measurement used to describe the amplitude of a wave is the <strong>Decibel (dB)</strong>.
+                        Decibels get a bit tricky, though, because there are two ways to measure them. Remembering that amplitude, and
+                        thus decibels, are a measurement of air pressure as a result of sound waves, the first is to measure them in
+                        terms of how far above a standard low-end reference number the sound pressure of a wave is. The reference number
+                        used is generally the accepted standard lowest level of amplitude a human can hear; this number is assigned 0dB.
+                        This is generally how sounds are measured in the field. This type of decibel is often referred to as a
+                        <strong>dBSPL</strong>, where SPL stands for Sound Pressure Level. The other common measurement is how far the
+                        amplitude of the wave is below the the highest level a computer or sound system can handle without clipping and
+                        causing distortion. These decibels are often referred to as <strong>dBFS</strong>, where FS stands for Full Scale.
+                        In this measurement system, 0dB is the loudest the system can handle without clipping, and all other levels are
+                        given negative decibels.
+                    </p>
+                    
+                    <h2>Independence!</h2>
+                    <p>
+                        Frequency and Amplitude, while they can each contribute to loudness and (to a lesser degree with amplitude) pitch,
+                        are entirely independent beasts. What happened was, they used to be besties, you know, like five billion years
+                        back, but then they got in a big fight over who was going to take Timbre to the big dance, and ever since then they
+                        haven't been as close. For a while they didn't even talk. Now it's like, they'll work together, you know, for the
+                        greater good of the universe and all, but they each pretty much do their own thing after 5pm. It's just not the
+                        same any more.
+                    </p>
+                    <p>
+                        The point is, frequency and amplitude can (and usually do) change entirely independent of each other. Now, this
+                        doesn't mean that they don't change simultaneously; this happens all the time. What it means is that they don't
+                        <em>have</em> to, and when they do, their values aren't tied together in any way. When the frequency of a wave
+                        increases, we can't make any new predictions about its amplitude as a result. It goes the other way, too; we can
+                        change amplitude around all day long without frequency ever noticing (or caring, for that matter; and why should
+                        frequency care who amplitude hangs out with, anyway? <small><em>It's just not the same...</em></small>).
+                    </p>
+                </section>
+                <section id="demo">
+                    <h2>Demo:</h2>
+                    <p>
+                        To drive this whole thing home, let's play around a bit with a sound wave. The little mini-demo below will generate
+                        a sine wave when the "Start Sound" button is pressed, and stop it when the "Stop Sound" button is pressed. The
+                        sound played should match the wave shown and the values displayed below it.
+                    </p>
+                    <p>
+                        Notice the two gray circles. These are handles: one changes frequency, the other changes amplitude. You can simply
+                        play around with the values in silence, turn on the sound and move it around. It's up to you.
+                    </p>
+                    <p>
+                        <strong>
+                            Note: You need a pretty new browser for this to work. It's currently tested and working in Mozilla Firefox and
+                            Google Chrome, and it should work in Apple Safari as well. All other browsers are entirely untested, and I have
+                            no idea whether they will work, though I'd love to find out.
+                        </strong>
+                    </p>
+                    <canvas id="democanvas" width=1100 height=300></canvas>
+                    <div class="hud">
+                        <div class="row">
+                            <div class="col-md-4 text-center">Amplitude: <span id="amplitudeVal"></span> dB</div>
+                            <div class="col-md-4 text-center">Frequency: <span id="frequencyVal"></span> Hz</div>
+                            <div class="col-md-4 text-center">Pitch: <span id="pitchVal"></span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"></div>
+                        </div>
+                        <div class="row">
+                            <a href="#democanvas" class="btn btn-success btn-large pull-left" onclick="startSound()">Start Sound</a>
+                            <a href="#democanvas" class="btn btn-danger btn-large pull-right" onclick="stopSound()">Stop Sound</a>
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6"></div>
-                    </div>
-                    <div class="row">
-                        <a href="#canvas" class="btn btn-success btn-large pull-left" onclick="startSound()">Start Sound</a>
-                        <a href="#canvas" class="btn btn-danger btn-large pull-right" onclick="stopSound()">Stop Sound</a>
-                    </div>
-                </div>
+                </section>
                 
             </article>
         </main>
-        <script src="utils.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="js/waves.js"></script>
+        <script src="js/pockets.js"></script>
+        <script src="js/amplifreqs.js"></script>
+        <script src="js/demo.js"></script>
         <script>
         window.onload = function() {
-          var canvas        = document.getElementById("canvas"),
-              ctx           = canvas.getContext('2d'),
-              centerX       = canvas.width/2,
-              centerY       = canvas.height/2,
-              padding       = 20,
-              frequency     = 440,
-              amplitude     = 50,
-              handleRadius  = 50,
-              scale         = 8,
-              xspeed        = 3,
-              mouse         = utils.captureMouse(canvas);
-          
-          utils.initCanvas(ctx);
-          ctx.lineWidth = 1;
-          ctx.fillStyle = "#CCC";
-          ctx.font = "18px 'Lucida Handwriting'";
-          ctx.translate(padding, 0);
-          
-          var amplitudeHandle = {
-            x : function() {
-              return (canvas.width/scale/(frequency/1000))*1.25;
-            },
-            y : function() {
-              return centerY - amplitude*10/scale * Math.sin(2*Math.PI * frequency/1000 *(this.x()/(canvas.width/scale)));
-            },
-            drag: function() {
-              var amp = Math.round((centerY - mouse.y) * scale / 10);
-              if (Math.abs(amp)<101) amplitude = amp;
-              updateSound();
-            }
-          },
-          frequencyHandle = {
-            x : function() {
-              return canvas.width/scale/(frequency/1000) * 1.5;
-            },
-            y : function() {
-              return centerY;
-            },
-            drag : function() {
-              frequency = (1.5*canvas.width)/(scale*(mouse.x-padding)) * 1000;
-              updateSound();
-            }
-          };
-          
-          
-          var drag, dragFct;
-          canvas.addEventListener("mousedown", function() {
-            var dx, dy;
-            
-            // frequency handle?
-            dx = mouse.x - (frequencyHandle.x()+padding);
-            dy = mouse.y - frequencyHandle.y();
-            if (Math.sqrt(dx*dx + dy*dy) < handleRadius/scale) {
-                console.log("freq drag");
-                drag = true;
-                dragFct = frequencyHandle.drag;
-                return;
-            }
-            // amplitude handle?
-            dx = mouse.x - (amplitudeHandle.x()+padding);
-            dy = mouse.y - amplitudeHandle.y();
-            if (Math.sqrt(dx*dx + dy*dy) < handleRadius/scale) {
-                drag = true;
-                dragFct = amplitudeHandle.drag;
-                return;
-            }
-            drag = false;
-          });
-          canvas.addEventListener("mousemove", function() {
-              if (drag) dragFct();
-          });
-          canvas.addEventListener("mouseup", function() {
-              drag = false;
-          });
-          
-          
-          function drawWave() {
-              xpos = 0;
-              ypos = centerY;
-              ctx.beginPath();
-              ctx.moveTo(xpos, ypos);
-              while (xpos <= canvas.width-padding*2) {
-                  xpos += xspeed;
-                  ypos = centerY
-                       - amplitude*10/scale             // amplitude scaled to match "zoom" level
-                       * Math.sin(                      // sin(2PI * f * t)
-                           2*Math.PI
-                         * frequency/1000               // convert from Hz to kHz
-                         * (xpos/(canvas.width/scale))  // scale x variable to represent timestep within the scaled region
-                       )
-                   ;
-                   ctx.lineTo(xpos, ypos);
-                }
-                ctx.stroke();
-            }
-            
-            function drawHandles() {
-                // x-axis: frequency
-                ctx.fillCircle(frequencyHandle.x(), frequencyHandle.y(), handleRadius/scale);
-                ctx.strokeCircle(frequencyHandle.x(), frequencyHandle.y(), handleRadius/scale);
-                
-                // y-axis: amplitude
-                ctx.fillCircle(amplitudeHandle.x(), amplitudeHandle.y(), handleRadius/scale);
-                ctx.strokeCircle(amplitudeHandle.x(), amplitudeHandle.y(), handleRadius/scale);
-            }
-            
-            function drawScale() {
-                ctx.save();
-                
-                ctx.strokeStyle = "#777";
-                ctx.fillStyle = "#777";
-                
-                ctx.strokeRect(0, centerY, canvas.width-padding*2, 0);
-                ctx.fillText("0ms", -30/scale, centerY-(200/scale));
-                
-                for (var i=1; i<scale+1; i++) {
-                    ctx.strokeRect(canvas.width*i/scale, centerY-(175/scale), 0, 350/scale);
-                    var text = i.toString() + "ms";
-                    ctx.fillText(text, (canvas.width*i-ctx.measureText(text).width*3)/scale, centerY-(200/scale));
-                }
-              
-                ctx.restore();
-            }
-          
-            function drawHUD() {
-                document.getElementById("frequencyVal").innerHTML = Math.round(frequency).toString();
-                document.getElementById("amplitudeVal").innerHTML = Math.abs(Math.round(amplitude)).toString();
-                
-                document.getElementById("pitchVal").innerHTML = pitch(frequency).note;
-            }
-        
-            function pitch(f) {
-                var pitches = "A#BC#D#EF#G#",
-                    p = 69 + 12*(Math.log(f/440)/Math.log(2)),
-                    pindex = Math.round(p-69)%12;
-                if (pindex < 0) pindex += 12;
-                
-                var note = pitches[pindex];
-                if (note == "#") 
-                    note = pitches[
-                            (pindex-1) < 0
-                            ?    12+(pindex-1)
-                            :    (pindex-1)
-                           ]+"#/"+pitches[(pindex+1)%12]+"b";
-                return {ordinal: p, note: note};
-            }
-            
-            
-            var audioCtx,
-                osc,
-                gain,
-                soundOn,
-                initOscillator,
-                updateSound;
-           // try {
-                var webkit = false;
-                try {
-                    audioCtx = new window.AudioContext();
-                }
-                catch (e) {
-                    audioCtx = new window.webkitAudioContext(),
-                    webkit = true;
-                }
-                    
-                initOscillator = function() {
-                    osc = audioCtx.createOscillator();
-                    gain = webkit ? audioCtx.createGainNode() : audioCtx.createGain();
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.type = osc.SINE;
-                }
-                initOscillator();
-                
-                updateSound = function() {
-                    //osc.stop();
-                    //initOscillator();
-                    osc.frequency.value = frequency;
-                    gain.gain.value = Math.abs(amplitude/10);
-                    //if (soundOn) osc.start();
-                }
-                startSound = function() {
-                    osc.start(0);
-                    soundOn = true;
-                };
-                stopSound = function() {
-                    osc.stop(0);
-                    soundOn = false;
-                    initOscillator();
-                };
-            /*
-            }
-            catch (err) {
-                console.log(err);
-                console.log("Audio not supported!");
-            }/**/
-            // Loop
-            (function drawFrame() {
-                window.requestAnimationFrame(drawFrame, canvas);
-                ctx.clear();
-                
-                drawScale();
-                drawWave();
-                drawHandles();
-                drawHUD();
-            })();
+          Demo();
+          Transverse();
+          Longitudinal();
+          Pockets();
+          AmpliFreqs();
         };
         var startSound, stopSound;
           
